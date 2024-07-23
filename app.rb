@@ -6,10 +6,7 @@ erb (:hello)
 end
 
 get("/") do
-  "
-  <h1>Welcome to your Sinatra App!</h1>
-  <p>Define some routes in app.rb</p>
-  "
+  erb(:square)
 end
 
 get ("/square/new") do
@@ -22,3 +19,36 @@ get("/square/results") do
 
   erb(:square_results)
 end
+
+get ("/square_root/new") do
+  erb(:square)
+end
+
+get("/square_root/results") do
+  @the_num = params.fetch(:num_to_square)
+  @the_square = @the_num.to_f.**2
+
+  erb(:square_results)
+end
+
+# get ("/payment/new") do
+#   erb(:square)
+# end
+
+# get("/payment/results") do
+#   @the_num = params.fetch(:num_to_square)
+#   @the_square = @the_num.to_f.**2
+
+#   erb(:square_results)
+# end
+
+# get ("/random/new") do
+#   erb(:square)
+# end
+
+# get("/random/results") do
+#   @the_num = params.fetch(:num_to_square)
+#   @the_square = @the_num.to_f.**2
+
+#   erb(:square_results)
+# end
