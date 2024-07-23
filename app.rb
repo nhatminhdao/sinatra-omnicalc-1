@@ -13,5 +13,12 @@ get("/") do
 end
 
 get ("/square/new") do
- @square = @params.fetch(:square).to_f.square
+ erb(:square)
+end
+
+get("/square/results") do
+  @the_num = params.fetch(:num_to_square)
+  @the_square = @the_num.to_f.**2
+
+  erb(:square_results)
 end
