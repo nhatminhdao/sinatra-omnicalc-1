@@ -32,12 +32,12 @@ get ("/payment/new") do
 end
 
 get("/payment/results") do
-  @user_apr = (params.fetch(:user_apr).to_f / 100).to_fs(:percentage, {:precision => 4})
-  @r= @apr.to_f /12
+  @user_apr = params.fetch(:user_apr).to_f
+  @r= @user_apr /100 /12
   @user_years = params.fetch(:user_years).to_i
   @num_periods = @user_years * 12
-  @user_principal = params.fetch(:user_principal).to_fs(:currency, {:precision => 2})
-  @payment = @r * (@user_principal.to_f) / (1 - (1 + @r) ** @num_periods)
+  @user_principal = params.fetch(:user_principal).to_f
+  @payment = @r * @user_principal / (1 - (1 + @r) ** -@num_periods)
 
   erb(:payment_results)
 end
