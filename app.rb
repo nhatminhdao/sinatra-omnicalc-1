@@ -42,13 +42,14 @@ get("/payment/results") do
   erb(:payment_results)
 end
 
-# get ("/random/new") do
-#   erb(:square)
-# end
+get ("/random/new") do
+  erb(:random)
+end
 
-# get("/random/results") do
-#   @the_num = params.fetch(:num_to_square)
-#   @the_square = @the_num.to_f.**2
+get("/random/results") do
+  @user_min = params.fetch(:user_min).to_f
+  @user_max = params.fetch(:user_max).to_f
+  @random_num = rand(@user_min..@user_max).to_f.round(16)
 
-#   erb(:square_results)
-# end
+  erb(:random_results)
+end
